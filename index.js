@@ -48,6 +48,9 @@ async function main() {
     const rating = $("#rating span").text();
     statData["kd"] = kd;
     statData["rating"] = rating;
+    const mapDiv = $("#player-maps span[style='line-height:26px;']")
+    statData["mapMost"] = $(mapDiv[0]).text()
+    statData["mapLeast"] = $(mapDiv.slice(-1)).text()
     res.send(statData);
   });
 }
