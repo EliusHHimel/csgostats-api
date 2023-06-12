@@ -22,7 +22,7 @@ async function main() {
         const $ = cheerio.load(html, null, false);
 
         const elements = $(".player-ranks img");
-;
+        ;
         const ranks = []
         let st = $(
             'div[style="float:left; width:60%; font-size:34px; color:#fff; line-height:0.75em; text-align:center;"]',
