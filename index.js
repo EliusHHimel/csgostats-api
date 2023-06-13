@@ -22,17 +22,11 @@ async function main() {
 
     const elements = $(".player-ranks img");
 
-        const elements = $(".player-ranks img");
-        ;
         const ranks = []
         let st = $(
             'div[style="float:left; width:60%; font-size:34px; color:#fff; line-height:0.75em; text-align:center;"]',
         );
 
-    const ranks = [];
-    let st = $(
-      'div[style="float:left; width:60%; font-size:34px; color:#fff; line-height:0.75em; text-align:center;"]',
-    );
 
 
     const statText = st.contents().filter(function () {
@@ -59,6 +53,7 @@ async function main() {
     const mapDiv = $("#player-maps span[style='line-height:26px;']")
     statData["mapMost"] = $(mapDiv[0]).text()
     statData["mapLeast"] = $(mapDiv.slice(-1)).text()
+    statData["ranks"] = ranks;
     res.send(statData);
   });
 }
