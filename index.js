@@ -20,9 +20,13 @@ async function main() {
     const html = htmlData.toString();
     const $ = cheerio.load(html, null, false);
 
-    const elements = $(".player-ranks img");
-
     const ranks = [];
+    const statKeys = ["win_rate", "hs_rate", "adr"];
+    const statData = {};
+
+    //Selector
+
+    const playerRank = $(".player-ranks img");
     let st = $(
       'div[style="float:left; width:60%; font-size:34px; color:#fff; line-height:0.75em; text-align:center;"]',
     );
@@ -33,24 +37,27 @@ async function main() {
     const statValue = statText.map((_, element) => $(element).text().trim())
       .get().filter((e) => e);
 
-    const statKeys = ["win_rate", "hs_rate", "adr"];
-    const statData = {};
-
     for (let i = 0; i < statKeys.length; i++) {
       statData[statKeys[i]] = statValue[i];
     }
-    elements.map((_, element) => {
+    playerRank.map((_, element) => {
       let images = $(element).attr("src");
       ranks.push(images);
     });
 
     const kd = $("#kpd span").text();
     const rating = $("#rating span").text();
+    const mapDiv = $("#player-maps span[style='line-height:26px;']");
+    const weapon = $("#player-weapons tr").find("td:nth-child(2)");
+
+    //Assign Object Data
+    statData["mapMost"] = $(mapDiv).eq(1).text();
+    statData["mapLeast"] = $(mapDiv).eq(-1).text();
     statData["kd"] = kd;
     statData["rating"] = rating;
-    const mapDiv = $("#player-maps span[style='line-height:26px;']")
-    statData["mapMost"] = $(mapDiv[0]).text()
-    statData["mapLeast"] = $(mapDiv.slice(-1)).text()
+    statData["weaponMost"] = $(weapon).eq(1).text();
+    statData["weaponLeast"] = $(weapon).eq(-1).text();
+
     res.send(statData);
   });
 }
