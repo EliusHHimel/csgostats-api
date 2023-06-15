@@ -51,12 +51,12 @@ async function main() {
     const weapon = $("#player-weapons tr").find("td:nth-child(2)");
 
     //Assign Object Data
-    statData["mapMost"] = $(mapDiv).eq(1).text();
+    statData["mapMost"] = $(mapDiv).eq(0).text();
     statData["mapLeast"] = $(mapDiv).eq(-1).text();
     statData["kd"] = kd;
     statData["ranks"] = ranks;
     statData["rating"] = rating;
-    statData["weaponMost"] = $(weapon).eq(1).text();
+    statData["weaponMost"] = $(weapon).eq(0).text();
     statData["weaponLeast"] = $(weapon).eq(-1).text();
 
 
