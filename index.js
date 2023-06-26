@@ -49,6 +49,7 @@ async function main() {
     const rating = $("#rating span").text();
     const mapDiv = $("#player-maps span[style='line-height:26px;']");
     const weapon = $("#player-weapons tr").find("td:nth-child(2)");
+    const kills = $("#player-weapons tr").find("td:nth-child(3)").eq(0).text().split('\n ')[1].split(' ');    
 
     //Assign Object Data
     statData["mapMost"] = $(mapDiv).eq(0).text();
@@ -56,9 +57,8 @@ async function main() {
     statData["kd"] = kd;
     statData["ranks"] = ranks;
     statData["rating"] = rating;
-    statData["weaponMost"] = $(weapon).eq(0).text();
+    statData["weaponMost"] = $(weapon).eq(0).text() + ' - ' + kills[43];
     statData["weaponLeast"] = $(weapon).eq(-1).text();
-
 
     res.send(statData);
   });
