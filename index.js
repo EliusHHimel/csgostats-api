@@ -25,7 +25,7 @@ async function main() {
     const statData = {};
 
     //Selector
-    const playerRank = $(".player-ranks img");
+    const playerRank = $(".rank img");
     let st = $(
       'div[style="float:left; width:60%; font-size:34px; color:#fff; line-height:0.75em; text-align:center;"]',
     );
